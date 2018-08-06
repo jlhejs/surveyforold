@@ -1,0 +1,733 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
+    <link rel="stylesheet" href="../style/global.css"/>
+    <link rel="stylesheet" href="../style/survey.css"/>
+    <link rel="stylesheet" href="../style/twitter.css"/>
+    <script src="../../JsCommon/jquery/jquery-1.11.1.min.js"></script>
+    <script src="../JS/countdown.js"></script>
+    <!--[if lt IE 9]>
+    <script src="http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+        (function(window) {
+            var theUA = window.navigator.userAgent.toLowerCase();
+            if ((theUA.match(/msie\s\d+/) && theUA.match(/msie\s\d+/)[0]) || (theUA.match(/trident\s?\d+/) && theUA.match(/trident\s?\d+/)[0])) {
+                var ieVersion = theUA.match(/msie\s\d+/)[0].match(/\d+/)[0] || theUA.match(/trident\s?\d+/)[0];
+                if (ieVersion < 8) {
+                    var str = "您的浏览器版本太low了\n已经和时代脱轨了 :(";
+                    var str2 = "推荐使用:<a href='https://www.baidu.com/s?ie=UTF-8&wd=%E8%B0%B7%E6%AD%8C%E6%B5%8F%E8%A7%88%E5%99%A8' target='_blank' style='color:#cc0'>谷歌</a>," +
+                            "<a href='https://www.baidu.com/s?ie=UTF-8&wd=%E7%81%AB%E7%8B%90%E6%B5%8F%E8%A7%88%E5%99%A8' target='_blank' style='color:#cc0'>火狐</a>," +
+                            "<a href='https://www.baidu.com/s?ie=UTF-8&wd=%E7%8C%8E%E8%B1%B9%E6%B5%8F%E8%A7%88%E5%99%A8' target='_blank' style='color:#cc0'>猎豹</a>,其他双核急速模式";
+                    document.writeln("<pre style='text-align:center;color:#fff;background-color:#0cc; height:100%;border:0;position:fixed;top:0;left:0;width:100%;z-index:1234'>" +
+                    "<h2 style='padding-top:200px;margin:0'><strong>" + str + "<br/></strong></h2><p>" +
+                    str2 + "</p><h2 style='margin:0'><strong>如果您的使用的是双核浏览器,请切换到极速模式访问<br/></strong></h2></pre>");
+                    document.execCommand("Stop");
+                };
+            }
+        })(window);
+    </script>
+    <style>
+        input[type="text"].width50 {
+            width: 50%;
+        }
+        #DivPart1,
+        #DivPart2,
+        #DivPart3,
+        #DivPart4,
+        #DivPart5,
+        #DivPart6,
+        #DivPart7,
+        #DivPart8,
+        .P1Q1checked,
+        .P2Q1S2Achecked,
+        .P2Q1S2Bchecked,
+        .P2Q8AShow,
+        .P2Q8BShow,
+        .P2Q8CShow,
+        .P2Q2AShow,
+        .P2Q2BShow,
+        .P2Q2CShow,
+        .P2Q2DShow,
+        .P2Q2EShow,
+        .P2Q2FShow,
+        .P2Q2GShow,
+        .P2Q2HShow{
+            display: none;
+        }
+    </style>
+    <title>北京交通大学毕业生职业发展状况调查问卷</title>
+</head>
+<body id="divTop">
+<div class="wjImgTop col-sm-12" style="background: url('../images/index-bg.jpg');background-size: cover;"></div>
+<div class="baccolor" >
+    <h2 class="wjtitle">北京交通大学毕业生职业发展状况调查问卷</h2>
+    <br>
+</div>
+<form id="SurveyForm" method="get" action="">
+    <div class="row  col-sm-12" id="center">
+        <div id="DivPart0" class="" >
+
+            <div class="prompt clearfix">
+                <span>亲爱的校友，</span>
+                <p>  您好！感谢您在百忙之中接受母校的问卷调查。为了解学校改革开放40年以来各位校友的职业发展状况，更好地为校友提供服务，同时为母校人才培养提供参考意见，特组织本次问卷调查。请您按照实际情况和想法如实填写，我们将遵照保密法，确保您提供的资料不外泄。</p>
+
+                <p>衷心感谢您的支持！</p>
+                <p class="promptright">《恢复高考以来我校培养的毕业生职业发展状况》研究课题组</p>
+            </div>
+            <hr/>
+
+            <div class="divButton">
+                <input type="button" id="btnLogin" class="go-page" value="开 始 答 题 >>" onclick="StartSurvey()" />
+            </div>
+            <hr/>
+        </div>
+        <div id="DivPart1" class="col-lg-12" >
+            <h1 class="part-title">第一部分：基本信息及在校情况</h1>
+			<div class="subject ">
+                <h4 class="QuestionTitle">1.交大所获的学历：(多选)<label for="P1Q1" class="error">←请选择！</label></h4>
+                <div class="Answer clearfix">
+                    <span class="col-xs-12 zkeycheck"><input type="checkbox" name="P1Q1" id="P1Q1A" value="1" />
+                        <label style="display: inline-block">博士研究生</label>
+                        <span class="P1Q1checked">
+                            ，所在学院（系）：<select name="P1Q1AR1" id="P1Q1AR1"></select>
+                            毕业年份：<select name="P1Q1AR2" id="P1Q1AR2"></select>
+                        </span>
+                    </span>
+                    <span class="col-xs-12 zkeycheck"><input type="checkbox" name="P1Q1" id="P1Q1B" value="2" />
+                        <label style="display: inline-block">硕士研究生</label>
+                        <span class="P1Q1checked">
+                            ，所在学院（系）：<select name="P1Q1BR1" id="P1Q1BR1"></select>
+                            毕业年份：<select name="P1Q1BR2" id="P1Q1BR2"></select>   
+                        </span>
+                    </span>
+                    <span class="col-xs-12 zkeycheck"><input type="checkbox" name="P1Q1" id="P1Q1C" value="3" />
+                        <label style="display: inline-block">本科</label>
+                        <span class="P1Q1checked">
+                            ，所在学院（系）：<select name="P1Q1CR1" id="P1Q1CR1"></select>
+                            毕业年份：<select name="P1Q1CR2" id="P1Q1CR2"></select>
+                        </span>
+                    </span>
+                    <span class="col-xs-12 zkeycheck"><input type="checkbox" name="P1Q1" id="P1Q1D" value="4" />
+                        <label style="display: inline-block">专科</label>
+                        <span class="P1Q1checked">
+                            ，所在学院（系）：<select name="P1Q1DR1" id="P1Q1DR1"></select>
+                            毕业年份：<select name="P1Q1DR2" id="P1Q1DR2"></select>
+                        </span>
+                    </span>
+                    <span class="col-xs-12 zkeycheck"><input type="checkbox" name="P1Q1" id="P1Q1E" value="5" />
+                        <label style="display: inline-block">其他</label>
+                        <span class="P1Q1checked">
+                            ，所在学院（系）：<select name="P1Q1ER1" id="P1Q1ER1"></select>
+                            毕业年份：<select name="P1Q1ER2" id="P1Q1ER2"></select>
+                        </span>
+                    </span>
+                </div>
+            </div>   
+		    <div class="subject clearfix">
+                <h4 class="QuestionTitle">2.性别：<label for="P1Q2" class="error">←请选择！</label></h4>
+                <div class="Answer clearfix">
+                    <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P1Q2" id="P1Q2A" value="1"/><label>男</label></span>
+                    <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P1Q2" id="P1Q2B" value="2"/><label>女</label></span>
+                </div>
+            </div>
+			 <div class="subject clearfix">
+                <h4 class="QuestionTitle">3.毕业时是否是中共党员（含预备党员）：<label for="P1Q3" class="error">←请选择！</label></h4>
+                <div class="Answer clearfix">
+                    <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P1Q3" id="P1Q3A" value="1"/><label>是</label></span>
+                    <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P1Q3" id="P1Q3B" value="2"/><label>否</label></span>
+                </div>
+            </div>
+			<div class="subject clearfix">
+                <h4 class="QuestionTitle">4.您毕业时的班级排名：<label for="P1Q4" class="error">←请选择！</label></h4>
+                <div class="Answer clearfix">
+                    <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P1Q4" id="P1Q4A" value="1"/><label>排名前30%</label></span>
+                    <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P1Q4" id="P1Q4B" value="2"/><label>排名在31%-50%</label></span>
+					<span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P1Q4" id="P1Q4C" value="3"/><label>排名在51%-70%</label></span>
+                    <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P1Q4" id="P1Q4D" value="4"/><label>排名后30%</label></span>
+                </div>
+            </div>
+			<div class="subject ">
+                <h4 class="QuestionTitle">5.在校期间承担哪类学生职务：（多选）<label for="P1Q5" class="error">←请选择！</label></h4>
+                <div class="Answer clearfix">
+                    <span class="col-xs-12 col-sm-4 zkeycheck"><input type="checkbox" name="P1Q5" id="P1Q5A" value="1" /><label>校、院学生会干部</label></span>
+                    <span class="col-xs-12 col-sm-4 zkeycheck"><input type="checkbox" name="P1Q5" id="P1Q5B" value="2" /><label>校、院团委职能部门干部</label></span>
+                    <span class="col-xs-12 col-sm-4 zkeycheck"><input type="checkbox" name="P1Q5" id="P1Q5C" value="3" /><label>班长或团支书</label></span>
+                    <span class="col-xs-12 col-sm-4 zkeycheck"><input type="checkbox" name="P1Q5" id="P1Q5D" value="4" /><label>其他</label></span>
+                    <span class="col-xs-12 col-sm-4 zkeycheck"><input type="checkbox" name="P1Q5" id="P1Q5E" value="5" /><label>无</label></span>
+                </div>
+            </div>   
+			<div class="subject clearfix">
+                <h4 class="QuestionTitle">6.在校期间您参加学生（社团）工作的时间投入程度：<label for="P1Q6" class="error">←请选择！</label></h4>
+                <div class="Answer clearfix">
+                    <span class="col-xs-12 col-md-5c zkeyradio"><input type="radio" name="P1Q6" id="P1Q6A" value="1"/><label>非常多</label></span>
+                    <span class="col-xs-12 col-md-5c zkeyradio"><input type="radio" name="P1Q6" id="P1Q6B" value="2"/><label>较多</label></span>
+					<span class="col-xs-12 col-md-5c zkeyradio"><input type="radio" name="P1Q6" id="P1Q6C" value="3"/><label>一般</label></span>
+                    <span class="col-xs-12 col-md-5c zkeyradio"><input type="radio" name="P1Q6" id="P1Q6D" value="4"/><label>较少</label></span>
+					<span class="col-xs-12 col-md-5c zkeyradio"><input type="radio" name="P1Q6" id="P1Q6E" value="5"/><label>从来没有</label></span>
+                </div>
+            </div>
+			<div class="subject clearfix">
+                <h4 class="QuestionTitle">7.在校期间您参加社会实践程度（包括实习、见习、兼职、挂职锻炼）：<label for="P1Q7" class="error">←请选择！</label></h4>
+                <div class="Answer clearfix">
+                    <span class="col-xs-12 col-md-5c zkeyradio"><input type="radio" name="P1Q7" id="P1Q7A" value="1"/><label>非常多</label></span>
+                    <span class="col-xs-12 col-md-5c zkeyradio"><input type="radio" name="P1Q7" id="P1Q7B" value="2"/><label>较多</label></span>
+					<span class="col-xs-12 col-md-5c zkeyradio"><input type="radio" name="P1Q7" id="P1Q7C" value="3"/><label>一般</label></span>
+                    <span class="col-xs-12 col-md-5c zkeyradio"><input type="radio" name="P1Q7" id="P1Q7D" value="4"/><label>较少</label></span>
+					<span class="col-xs-12 col-md-5c zkeyradio"><input type="radio" name="P1Q7" id="P1Q7E" value="5"/><label>从来没有</label></span>
+                </div>
+            </div>			
+			<div class="subject clearfix">
+                <h4 class="QuestionTitle">8.在校期间的获奖或荣誉称号：<label for="P1Q8" class="error">←请选择！</label></h4>
+                <div class="Answer clearfix">
+                    <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P1Q8" id="P1Q8A" value="1"/><label>国家级</label></span>
+                    <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P1Q8" id="P1Q8B" value="2"/><label>省（市）级</label></span>
+					<span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P1Q8" id="P1Q8C" value="3"/><label>校级</label></span>
+                    <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P1Q8" id="P1Q8D" value="4"/><label>院（系）级</label></span>
+					<span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P1Q8" id="P1Q8E" value="5"/><label>无</label></span>
+                </div>
+            </div>			
+            <hr>
+            <div class="divButton">
+                <input class="go-page" type="button" value="<< 返 回 前 页" onclick="GoPreviewOnly('#DivPart0','#DivPart1','#divTop')"  style="margin-right: 80px;"/>
+                <input class="go-page" type="button" value="继 续 填 答 >>" onclick="btnPart1_Click()"/>
+            </div>
+        </div>
+		<div id="DivPart2" class="col-lg-12" >
+            <h1 class="part-title">第二部分：职业基本情况</h1>
+			<div class="subject">
+
+                <h4 class="QuestionTitle">1.单位名称：<input type="text" id="P2Q1S1" name="P2Q1S1" class="with150"/>
+                     </h4>
+                <h4 class="QuestionTitle martop" >所在国家<label for="P2Q1S2" class="error">←请选择！</label></h4>
+                <div class="Answer clearfix">
+                    <span class="col-xs-12 zkeyradio"><input type="radio" name="P2Q1S2" id="P2Q1S2A" value="1"/><label>国内</label>
+                        <span class="P2Q1S2Achecked"> ，所在省（市）：<select name="P2Q1S2R1" id="P2Q1S2R1"></select><select name="P2Q1S2R2" id="P2Q1S2R2" style="display: none"></select></span>
+                    </span>
+                    <span class="col-xs-12 zkeyradio"><input type="radio" name="P2Q1S2" id="P2Q1S2B" value="2"/><label>国外</label>
+                        <span class="P2Q1S2Bchecked"> ，国家名称：<input type="text"  name="P2Q1S2R3" id="P2Q1S2R3"/></span>
+
+                    </span>
+                </div>
+            </div>
+			<div class="subject clearfix">
+                <h4 class="QuestionTitle">2.您所在单位的性质:<label for="P2Q2" class="error">←请选择！</label></h4>
+                <div class="Answer clearfix">
+                    <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q2" id="P2Q2A" value="1"/><label>国有企业</label></span>
+                    <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q2" id="P2Q2B" value="2"/><label>民营企业</label></span>
+					<span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q2" id="P2Q2C" value="3"/><label>外资企业</label></span>
+                    <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q2" id="P2Q2D" value="4"/><label>党政机关</label></span>
+					<span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q2" id="P2Q2E" value="5"/><label>科研单位</label></span>
+					<span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q2" id="P2Q2F" value="6"/><label>事业单位</label></span>
+                    <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q2" id="P2Q2G" value="7"/><label>部队</label></span>
+					<span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q2" id="P2Q2H" value="8"/><label>其他</label></span>
+                </div>
+            </div>	
+			<div class="subject clearfix  P2Q2AShow P2Q2BShow">
+                <h4 class="QuestionTitle martop">2.1您所在企业是否属于中国500强企业：<label for="P2Q2S1" class="error">←请选择！</label></h4>
+                <div class="Answer clearfix">
+                    <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q2S1" id="P2Q2S1A" value="1"/><label>是</label></span>
+                    <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q2S1" id="P2Q2S1B" value="2"/><label>否</label></span>
+                </div>
+            </div>	
+			<div class="subject clearfix P2Q2AShow P2Q2BShow P2Q2CShow P2Q2DShow P2Q2EShow P2Q2FShow">
+                <h4 class="QuestionTitle martop">2.2 您的职务级别：<label for="P2Q2S2" class="error">←请选择！</label></h4>
+                <div class="Answer clearfix">
+                    <div class="P2Q2AShow P2Q2BShow P2Q2CShow">
+                        <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q2S2" id="P2Q2S2A" value="101"/><label>高层管理者</label></span>
+                        <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q2S2" id="P2Q2S2B" value="102"/><label>中层管理者</label></span>
+                        <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q2S2" id="P2Q2S2C" value="103"/><label>基层管理者</label></span>
+                        <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q2S2" id="P2Q2S2D" value="104"/><label>其他</label></span>
+                    </div>
+                    <div class="P2Q2DShow P2Q2FShow">
+                        <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q2S2" id="P2Q2S2E" value="201"/><label>省部级</label></span>
+                        <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q2S2" id="P2Q2S2F" value="202"/><label>司级</label></span>
+                        <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q2S2" id="P2Q2S2G" value="203"/><label>处级</label></span>
+                        <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q2S2" id="P2Q2S2H" value="204"/><label>科级正副职</label></span>
+                        <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q2S2" id="P2Q2S2I" value="204"/><label>其他</label></span>
+                    </div>
+                    <div class="P2Q2EShow">
+                        <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q2S2" id="P2Q2S2J" value="301"/><label>正副研究员</label></span>
+                        <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q2S2" id="P2Q2S2K" value="302"/><label>助理研究员</label></span>
+                        <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q2S2" id="P2Q2S2L" value="303"/><label>研究实习员</label></span>
+                        <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q2S2" id="P2Q2S2M" value="304"/><label>其他</label></span>
+                    </div>
+                </div>
+            </div>
+            <div class="subject P2Q2GShow P2Q2HShow" >
+                <h4 class="QuestionTitle martop" >2.2 您的职务级别：<input type="text" id="P2Q2S2R2" name="P2Q2S2R2" class="with150"/></h4>
+            </div>
+			<div class="subject">
+                <h4 class="QuestionTitle martop" >2.3 您的专业技术职称：<input type="text" id="P2Q2S3" name="P2Q2S3" class="with150"/></h4>
+            </div>
+			<div class="subject clearfix">
+                <h4 class="QuestionTitle">3.您现任职位的工作年限：<label for="P2Q3" class="error">←请选择！</label></h4>
+                <div class="Answer clearfix">
+                    <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q3" id="P2Q3A" value="1"/><label>5年以下</label></span>
+                    <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q3" id="P2Q3B" value="2"/><label>5-10年</label></span>
+					<span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q3" id="P2Q3C" value="3"/><label>10-15年</label></span>
+                    <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q3" id="P2Q3D" value="4"/><label>15-20年</label></span>
+					<span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q3" id="P2Q3E" value="5"/><label>20年以上</label></span>
+                </div>
+            </div>
+			<div class="subject clearfix">
+                <h4 class="QuestionTitle">4.您目前年薪大概：<label for="P2Q4" class="error">←请选择！</label></h4>
+                <div class="Answer clearfix">
+                    <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q4" id="P2Q4A" value="1"/><label>10万以下</label></span>
+                    <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q4" id="P2Q4B" value="2"/><label>10-30万</label></span>
+					<span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q4" id="P2Q4C" value="3"/><label>30-50万</label></span>
+                    <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q4" id="P2Q4D" value="4"/><label>50-100万</label></span>
+					<span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q4" id="P2Q4E" value="5"/><label>100万以上</label></span>
+                </div>
+            </div>	
+			<div class="subject">
+                <h4 class="QuestionTitle"> 5.您工作岗位获得最高荣誉或获奖励等级：<label for="P2Q5" class="error">←请选择！</label></h4>
+                <div class="Answer clearfix">
+                    <span class="col-xs-12 col-sm-6 zkeyradio"><input type="radio" name="P2Q5" id="P2Q5A" value="1" /><label>国际或国家级	</label></span>
+                    <span class="col-xs-12 col-sm-6 zkeyradio"><input type="radio" name="P2Q5" id="P2Q5B" value="2" /><label>省部级</label></span>
+                    <span class="col-xs-12 col-sm-6 zkeyradio"><input type="radio" name="P2Q5" id="P2Q5C" value="3" /><label>地市级</label></span>
+                    <span class="col-xs-12 col-sm-6 zkeyradio">
+                        <input type="radio" class=" spanVisibility" id="P2Q5D" value="4" name="P2Q5">
+                        <label ><span>其他荣誉</span></label>
+                        <span class="hidespan" id="spanP2Q5other" >，请注明：<input type="text" class="textbox" id="P2Q5other" name="P2Q5other"></span>
+                    </span>
+                </div>
+            </div>
+			<div class="subject clearfix">
+                <h4 class="QuestionTitle">6.您毕业后更换单位的次数：<label for="P2Q6" class="error">←请选择！</label></h4>
+                <div class="Answer clearfix">
+                    <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q6" id="P2Q6A" value="1"/><label>0次</label></span>
+                    <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q6" id="P2Q6B" value="2"/><label>1-3次</label></span>
+					<span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q6" id="P2Q6C" value="3"/><label>4-6次</label></span>
+                    <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q6" id="P2Q6D" value="4"/><label>7-10次</label></span>
+					<span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q6" id="P2Q6E" value="5"/><label>10次以上</label></span>
+                </div>
+            </div>	
+			<div class="subject">
+                <h4 class="QuestionTitle"> 7.您目前工作的行业领域属于：<label for="P2Q7" class="error">←请选择！</label></h4>
+                <div class="Answer clearfix">
+                    <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q7" id="P2Q7A" value="1" /><label>交通运输行业</label></span>
+                    <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q7" id="P2Q7B" value="2" /><label>电力行业</label></span>
+                    <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q7" id="P2Q7C" value="3" /><label>建筑行业</label></span>
+                    <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q7" id="P2Q7D" value="4" /><label>信息技术行业</label></span>
+                    <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q7" id="P2Q7E" value="5" /><label>金融行业</label></span>
+                    <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q7" id="P2Q7F" value="6" /><label>教育行业</label></span>
+                    <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q7" id="P2Q7G" value="7" /><label>军工行业</label></span>
+                    <span class="col-xs-12 col-sm-6 zkeyradio">
+                        <input type="radio" class=" spanVisibility" id="P2Q7H" value="8" name="P2Q7">
+                        <label ><span>其他</span></label>
+                        <span class="hidespan" id="spanP2Q7other" >，请注明：<input type="text" class="textbox" id="P2Q7other" name="P2Q7other"></span>
+                    </span>
+                </div>
+            </div>	
+			<div class="subject clearfix">
+                <h4 class="QuestionTitle">8.你目前工作岗位类型：<label for="P2Q8" class="error">←请选择！</label></h4>
+                <div class="Answer clearfix">
+                    <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q8" id="P2Q8A" value="1"/><label>经营管理类</label></span>
+                    <span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q8" id="P2Q8B" value="2"/><label>党政管理类</label></span>
+					<span class="col-xs-12 col-sm-5c zkeyradio"><input type="radio" name="P2Q8" id="P2Q8C" value="3"/><label>专业技术类</label></span>
+                </div>
+            </div>		
+			<hr>
+            <div class="divButton">
+                <input class="go-page" type="button" value="<< 返 回 前 页" onclick="GoPreviewOnly('#DivPart1','#DivPart2','#divTop')"  style="margin-right: 80px;"/>
+
+                <input class="go-page" type="button" value="继 续 填 答 >>" onclick="btnPart2_Click()"/>
+            </div>
+        </div>
+        <div id="DivPart3" class="col-lg-12" >
+            <h1 class="part-title">第三部分：职业贡献情况</h1>
+			<div class="subject P2Q8AShow">
+                <h4 class="QuestionTitle">1.请对学校培养出来的<span class="text-danger">经营管理类人才</span>，在<span class="text-danger">推动经济发展方面</span>的贡献程度进行评价。</h4>
+                <div class="Answer table">
+                    <table class="responsiveTable">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th class="tdErrMsg"></th>
+                            <th>非常小</th>
+                            <th>比较小</th>
+                            <th>一般</th>
+                            <th>比较大</th>
+                            <th>非常大</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr><td class="tdTitle">提升利润水平</td><td class="tdErrMsg"><label for="P3Q1R1" class="error">X→</label></td><td class="zkeyradio" title="非常小"><input type="radio" name="P3Q1R1" value="1" id="P3Q1R1A" /><label for="P3Q1R1A"></label></td><td class="zkeyradio" title="比较小"><input type="radio" name="P3Q1R1" value="2" id="P3Q1R1B" /><label for="P3Q1R1B"></label></td><td class="zkeyradio" title="一般"><input type="radio" name="P3Q1R1" value="3" id="P3Q1R1C" /><label for="P3Q1R1C"></label></td><td class="zkeyradio" title="比较大"><input type="radio" name="P3Q1R1" value="4" id="P3Q1R1D" /><label for="P3Q1R1D"></label></td><td class="zkeyradio" title="非常大"><input type="radio" name="P3Q1R1" value="5" id="P3Q1R1E" /><label for="P3Q1R1E"></label></td></tr>
+                        <tr><td class="tdTitle">扩大发展规模</td><td class="tdErrMsg"><label for="P3Q1R2" class="error">X→</label></td><td class="zkeyradio" title="非常小"><input type="radio" name="P3Q1R2" value="1" id="P3Q1R2A" /><label for="P3Q1R2A"></label></td><td class="zkeyradio" title="比较小"><input type="radio" name="P3Q1R2" value="2" id="P3Q1R2B" /><label for="P3Q1R2B"></label></td><td class="zkeyradio" title="一般"><input type="radio" name="P3Q1R2" value="3" id="P3Q1R2C" /><label for="P3Q1R2C"></label></td><td class="zkeyradio" title="比较大"><input type="radio" name="P3Q1R2" value="4" id="P3Q1R2D" /><label for="P3Q1R2D"></label></td><td class="zkeyradio" title="非常大"><input type="radio" name="P3Q1R2" value="5" id="P3Q1R2E" /><label for="P3Q1R2E"></label></td></tr>
+                        <tr><td class="tdTitle">提高管理效率</td><td class="tdErrMsg"><label for="P3Q1R3" class="error">X→</label></td><td class="zkeyradio" title="非常小"><input type="radio" name="P3Q1R3" value="1" id="P3Q1R3A" /><label for="P3Q1R3A"></label></td><td class="zkeyradio" title="比较小"><input type="radio" name="P3Q1R3" value="2" id="P3Q1R3B" /><label for="P3Q1R3B"></label></td><td class="zkeyradio" title="一般"><input type="radio" name="P3Q1R3" value="3" id="P3Q1R3C" /><label for="P3Q1R3C"></label></td><td class="zkeyradio" title="比较大"><input type="radio" name="P3Q1R3" value="4" id="P3Q1R3D" /><label for="P3Q1R3D"></label></td><td class="zkeyradio" title="非常大"><input type="radio" name="P3Q1R3" value="5" id="P3Q1R3E" /><label for="P3Q1R3E"></label></td></tr>
+                        <tr><td class="tdTitle">降低人力成本</td><td class="tdErrMsg"><label for="P3Q1R4" class="error">X→</label></td><td class="zkeyradio" title="非常小"><input type="radio" name="P3Q1R4" value="1" id="P3Q1R4A" /><label for="P3Q1R4A"></label></td><td class="zkeyradio" title="比较小"><input type="radio" name="P3Q1R4" value="2" id="P3Q1R4B" /><label for="P3Q1R4B"></label></td><td class="zkeyradio" title="一般"><input type="radio" name="P3Q1R4" value="3" id="P3Q1R4C" /><label for="P3Q1R4C"></label></td><td class="zkeyradio" title="比较大"><input type="radio" name="P3Q1R4" value="4" id="P3Q1R4D" /><label for="P3Q1R4D"></label></td><td class="zkeyradio" title="非常大"><input type="radio" name="P3Q1R4" value="5" id="P3Q1R4E" /><label for="P3Q1R4E"></label></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+			<div class="subject P2Q8AShow">
+                <h4 class="QuestionTitle">2.请对学校培养出来的<span class="text-danger">经营管理类人才</span>，在<span class="text-danger">承担社会责任方面</span>的贡献程度进行评价。</h4>
+                <div class="Answer table">
+                    <table class="responsiveTable">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th class="tdErrMsg"></th>
+                            <th>非常小</th>
+                            <th>比较小</th>
+                            <th>一般</th>
+                            <th>比较大</th>
+                            <th>非常大</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr><td class="tdTitle">增加传统就业岗位需求</td><td class="tdErrMsg"><label for="P3Q2R1" class="error">X→</label></td><td class="zkeyradio" title="非常小"><input type="radio" name="P3Q2R1" value="1" id="P3Q2R1A" /><label for="P3Q2R1A"></label></td><td class="zkeyradio" title="比较小"><input type="radio" name="P3Q2R1" value="2" id="P3Q2R1B" /><label for="P3Q2R1B"></label></td><td class="zkeyradio" title="一般"><input type="radio" name="P3Q2R1" value="3" id="P3Q2R1C" /><label for="P3Q2R1C"></label></td><td class="zkeyradio" title="比较大"><input type="radio" name="P3Q2R1" value="4" id="P3Q2R1D" /><label for="P3Q2R1D"></label></td><td class="zkeyradio" title="非常大"><input type="radio" name="P3Q2R1" value="5" id="P3Q2R1E" /><label for="P3Q2R1E"></label></td></tr>
+                        <tr><td class="tdTitle">提供多样化新兴岗位</td><td class="tdErrMsg"><label for="P3Q2R2" class="error">X→</label></td><td class="zkeyradio" title="非常小"><input type="radio" name="P3Q2R2" value="1" id="P3Q2R2A" /><label for="P3Q2R2A"></label></td><td class="zkeyradio" title="比较小"><input type="radio" name="P3Q2R2" value="2" id="P3Q2R2B" /><label for="P3Q2R2B"></label></td><td class="zkeyradio" title="一般"><input type="radio" name="P3Q2R2" value="3" id="P3Q2R2C" /><label for="P3Q2R2C"></label></td><td class="zkeyradio" title="比较大"><input type="radio" name="P3Q2R2" value="4" id="P3Q2R2D" /><label for="P3Q2R2D"></label></td><td class="zkeyradio" title="非常大"><input type="radio" name="P3Q2R2" value="5" id="P3Q2R2E" /><label for="P3Q2R2E"></label></td></tr>
+                        <tr><td class="tdTitle">投身慈善事业</td><td class="tdErrMsg"><label for="P3Q2R3" class="error">X→</label></td><td class="zkeyradio" title="非常小"><input type="radio" name="P3Q2R3" value="1" id="P3Q2R3A" /><label for="P3Q2R3A"></label></td><td class="zkeyradio" title="比较小"><input type="radio" name="P3Q2R3" value="2" id="P3Q2R3B" /><label for="P3Q2R3B"></label></td><td class="zkeyradio" title="一般"><input type="radio" name="P3Q2R3" value="3" id="P3Q2R3C" /><label for="P3Q2R3C"></label></td><td class="zkeyradio" title="比较大"><input type="radio" name="P3Q2R3" value="4" id="P3Q2R3D" /><label for="P3Q2R3D"></label></td><td class="zkeyradio" title="非常大"><input type="radio" name="P3Q2R3" value="5" id="P3Q2R3E" /><label for="P3Q2R3E"></label></td></tr>
+						</tbody>
+                    </table>
+                </div>
+            </div>
+			<div class="subject P2Q8BShow">
+                <h4 class="QuestionTitle">3.请对学校培养出来的<span class="text-danger">党政管理类人才</span>，在<span class="text-danger">促进区域建设方面</span>的贡献程度进行评价。</h4>
+                <div class="Answer table">
+                    <table class="responsiveTable">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th class="tdErrMsg"></th>
+                            <th>非常小</th>
+                            <th>比较小</th>
+                            <th>一般</th>
+                            <th>比较大</th>
+                            <th>非常大</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr><td class="tdTitle">各种政策制度的制定与修改</td><td class="tdErrMsg"><label for="P3Q3R1" class="error">X→</label></td><td class="zkeyradio" title="非常小"><input type="radio" name="P3Q3R1" value="1" id="P3Q3R1A" /><label for="P3Q3R1A"></label></td><td class="zkeyradio" title="比较小"><input type="radio" name="P3Q3R1" value="2" id="P3Q3R1B" /><label for="P3Q3R1B"></label></td><td class="zkeyradio" title="一般"><input type="radio" name="P3Q3R1" value="3" id="P3Q3R1C" /><label for="P3Q3R1C"></label></td><td class="zkeyradio" title="比较大"><input type="radio" name="P3Q3R1" value="4" id="P3Q3R1D" /><label for="P3Q3R1D"></label></td><td class="zkeyradio" title="非常大"><input type="radio" name="P3Q3R1" value="5" id="P3Q3R1E" /><label for="P3Q3R1E"></label></td></tr>
+                        <tr><td class="tdTitle">区域建设方案的起草与实施</td><td class="tdErrMsg"><label for="P3Q3R2" class="error">X→</label></td><td class="zkeyradio" title="非常小"><input type="radio" name="P3Q3R2" value="1" id="P3Q3R2A" /><label for="P3Q3R2A"></label></td><td class="zkeyradio" title="比较小"><input type="radio" name="P3Q3R2" value="2" id="P3Q3R2B" /><label for="P3Q3R2B"></label></td><td class="zkeyradio" title="一般"><input type="radio" name="P3Q3R2" value="3" id="P3Q3R2C" /><label for="P3Q3R2C"></label></td><td class="zkeyradio" title="比较大"><input type="radio" name="P3Q3R2" value="4" id="P3Q3R2D" /><label for="P3Q3R2D"></label></td><td class="zkeyradio" title="非常大"><input type="radio" name="P3Q3R2" value="5" id="P3Q3R2E" /><label for="P3Q3R2E"></label></td></tr>
+                        <tr><td class="tdTitle">促进思想政治建设工作</td><td class="tdErrMsg"><label for="P3Q3R3" class="error">X→</label></td><td class="zkeyradio" title="非常小"><input type="radio" name="P3Q3R3" value="1" id="P3Q3R3A" /><label for="P3Q3R3A"></label></td><td class="zkeyradio" title="比较小"><input type="radio" name="P3Q3R3" value="2" id="P3Q3R3B" /><label for="P3Q3R3B"></label></td><td class="zkeyradio" title="一般"><input type="radio" name="P3Q3R3" value="3" id="P3Q3R3C" /><label for="P3Q3R3C"></label></td><td class="zkeyradio" title="比较大"><input type="radio" name="P3Q3R3" value="4" id="P3Q3R3D" /><label for="P3Q3R3D"></label></td><td class="zkeyradio" title="非常大"><input type="radio" name="P3Q3R3" value="5" id="P3Q3R3E" /><label for="P3Q3R3E"></label></td></tr>
+                        <tr><td class="tdTitle">促进区域的经济发展水平</td><td class="tdErrMsg"><label for="P3Q3R4" class="error">X→</label></td><td class="zkeyradio" title="非常小"><input type="radio" name="P3Q3R4" value="1" id="P3Q3R4A" /><label for="P3Q3R4A"></label></td><td class="zkeyradio" title="比较小"><input type="radio" name="P3Q3R4" value="2" id="P3Q3R4B" /><label for="P3Q3R4B"></label></td><td class="zkeyradio" title="一般"><input type="radio" name="P3Q3R4" value="3" id="P3Q3R4C" /><label for="P3Q3R4C"></label></td><td class="zkeyradio" title="比较大"><input type="radio" name="P3Q3R4" value="4" id="P3Q3R4D" /><label for="P3Q3R4D"></label></td><td class="zkeyradio" title="非常大"><input type="radio" name="P3Q3R4" value="5" id="P3Q3R4E" /><label for="P3Q3R4E"></label></td></tr>
+                        <tr><td class="tdTitle">应对突发状况</td><td class="tdErrMsg"><label for="P3Q3R5" class="error">X→</label></td><td class="zkeyradio" title="非常小"><input type="radio" name="P3Q3R5" value="1" id="P3Q3R5A" /><label for="P3Q3R5A"></label></td><td class="zkeyradio" title="比较小"><input type="radio" name="P3Q3R5" value="2" id="P3Q3R5B" /><label for="P3Q3R5B"></label></td><td class="zkeyradio" title="一般"><input type="radio" name="P3Q3R5" value="3" id="P3Q3R5C" /><label for="P3Q3R5C"></label></td><td class="zkeyradio" title="比较大"><input type="radio" name="P3Q3R5" value="4" id="P3Q3R5D" /><label for="P3Q3R5D"></label></td><td class="zkeyradio" title="非常大"><input type="radio" name="P3Q3R5" value="5" id="P3Q3R5E" /><label for="P3Q3R5E"></label></td></tr>
+						</tbody>
+                    </table>
+                </div>
+            </div>
+			<div class="subject P2Q8BShow">
+                <h4 class="QuestionTitle">4.请对学校培养出来的<span class="text-danger">党政类管理人才</span>，在<span class="text-danger">提高社会服务方面</span>的贡献程度进行评价。</h4>
+                <div class="Answer table">
+                    <table class="responsiveTable">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th class="tdErrMsg"></th>
+                            <th>非常小</th>
+                            <th>比较小</th>
+                            <th>一般</th>
+                            <th>比较大</th>
+                            <th>非常大</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr><td class="tdTitle">基层社会群众自我教育管理等民主建设服务</td><td class="tdErrMsg"><label for="P3Q4R1" class="error">X→</label></td><td class="zkeyradio" title="非常小"><input type="radio" name="P3Q4R1" value="1" id="P3Q4R1A" /><label for="P3Q4R1A"></label></td><td class="zkeyradio" title="比较小"><input type="radio" name="P3Q4R1" value="2" id="P3Q4R1B" /><label for="P3Q4R1B"></label></td><td class="zkeyradio" title="一般"><input type="radio" name="P3Q4R1" value="3" id="P3Q4R1C" /><label for="P3Q4R1C"></label></td><td class="zkeyradio" title="比较大"><input type="radio" name="P3Q4R1" value="4" id="P3Q4R1D" /><label for="P3Q4R1D"></label></td><td class="zkeyradio" title="非常大"><input type="radio" name="P3Q4R1" value="5" id="P3Q4R1E" /><label for="P3Q4R1E"></label></td></tr>
+                        <tr><td class="tdTitle">社会保障福利服务</td><td class="tdErrMsg"><label for="P3Q4R2" class="error">X→</label></td><td class="zkeyradio" title="非常小"><input type="radio" name="P3Q4R2" value="1" id="P3Q4R2A" /><label for="P3Q4R2A"></label></td><td class="zkeyradio" title="比较小"><input type="radio" name="P3Q4R2" value="2" id="P3Q4R2B" /><label for="P3Q4R2B"></label></td><td class="zkeyradio" title="一般"><input type="radio" name="P3Q4R2" value="3" id="P3Q4R2C" /><label for="P3Q4R2C"></label></td><td class="zkeyradio" title="比较大"><input type="radio" name="P3Q4R2" value="4" id="P3Q4R2D" /><label for="P3Q4R2D"></label></td><td class="zkeyradio" title="非常大"><input type="radio" name="P3Q4R2" value="5" id="P3Q4R2E" /><label for="P3Q4R2E"></label></td></tr>
+                        <tr><td class="tdTitle">社会文化改造等精神文明服务</td><td class="tdErrMsg"><label for="P3Q4R3" class="error">X→</label></td><td class="zkeyradio" title="非常小"><input type="radio" name="P3Q4R3" value="1" id="P3Q4R3A" /><label for="P3Q4R3A"></label></td><td class="zkeyradio" title="比较小"><input type="radio" name="P3Q4R3" value="2" id="P3Q4R3B" /><label for="P3Q4R3B"></label></td><td class="zkeyradio" title="一般"><input type="radio" name="P3Q4R3" value="3" id="P3Q4R3C" /><label for="P3Q4R3C"></label></td><td class="zkeyradio" title="比较大"><input type="radio" name="P3Q4R3" value="4" id="P3Q4R3D" /><label for="P3Q4R3D"></label></td><td class="zkeyradio" title="非常大"><input type="radio" name="P3Q4R3" value="5" id="P3Q4R3E" /><label for="P3Q4R3E"></label></td></tr>
+                        <tr><td class="tdTitle">社会团体管理等社会行政管理性服务</td><td class="tdErrMsg"><label for="P3Q4R4" class="error">X→</label></td><td class="zkeyradio" title="非常小"><input type="radio" name="P3Q4R4" value="1" id="P3Q4R4A" /><label for="P3Q4R4A"></label></td><td class="zkeyradio" title="比较小"><input type="radio" name="P3Q4R4" value="2" id="P3Q4R4B" /><label for="P3Q4R4B"></label></td><td class="zkeyradio" title="一般"><input type="radio" name="P3Q4R4" value="3" id="P3Q4R4C" /><label for="P3Q4R4C"></label></td><td class="zkeyradio" title="比较大"><input type="radio" name="P3Q4R4" value="4" id="P3Q4R4D" /><label for="P3Q4R4D"></label></td><td class="zkeyradio" title="非常大"><input type="radio" name="P3Q4R4" value="5" id="P3Q4R4E" /><label for="P3Q4R4E"></label></td></tr>
+						</tbody>
+                    </table>
+                </div>
+            </div>
+			<div class="subject P2Q8CShow">
+                <h4 class="QuestionTitle">5.请对学校培养出来的<span class="text-danger">专业技术类人才</span>，在<span class="text-danger">推动技术发展方面</span>的贡献程度进行评价。</h4>
+                <div class="Answer table">
+                    <table class="responsiveTable">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th class="tdErrMsg"></th>
+                            <th>非常小</th>
+                            <th>比较小</th>
+                            <th>一般</th>
+                            <th>比较大</th>
+                            <th>非常大</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr><td class="tdTitle">解决技术难题</td><td class="tdErrMsg"><label for="P3Q5R1" class="error">X→</label></td><td class="zkeyradio" title="非常小"><input type="radio" name="P3Q5R1" value="1" id="P3Q5R1A" /><label for="P3Q5R1A"></label></td><td class="zkeyradio" title="比较小"><input type="radio" name="P3Q5R1" value="2" id="P3Q5R1B" /><label for="P3Q5R1B"></label></td><td class="zkeyradio" title="一般"><input type="radio" name="P3Q5R1" value="3" id="P3Q5R1C" /><label for="P3Q5R1C"></label></td><td class="zkeyradio" title="比较大"><input type="radio" name="P3Q5R1" value="4" id="P3Q5R1D" /><label for="P3Q5R1D"></label></td><td class="zkeyradio" title="非常大"><input type="radio" name="P3Q5R1" value="5" id="P3Q5R1E" /><label for="P3Q5R1E"></label></td></tr>
+                        <tr><td class="tdTitle">制定行业技术标准</td><td class="tdErrMsg"><label for="P3Q5R2" class="error">X→</label></td><td class="zkeyradio" title="非常小"><input type="radio" name="P3Q5R2" value="1" id="P3Q5R2A" /><label for="P3Q5R2A"></label></td><td class="zkeyradio" title="比较小"><input type="radio" name="P3Q5R2" value="2" id="P3Q5R2B" /><label for="P3Q5R2B"></label></td><td class="zkeyradio" title="一般"><input type="radio" name="P3Q5R2" value="3" id="P3Q5R2C" /><label for="P3Q5R2C"></label></td><td class="zkeyradio" title="比较大"><input type="radio" name="P3Q5R2" value="4" id="P3Q5R2D" /><label for="P3Q5R2D"></label></td><td class="zkeyradio" title="非常大"><input type="radio" name="P3Q5R2" value="5" id="P3Q5R2E" /><label for="P3Q5R2E"></label></td></tr>
+                        <tr><td class="tdTitle">开发先进技术</td><td class="tdErrMsg"><label for="P3Q5R3" class="error">X→</label></td><td class="zkeyradio" title="非常小"><input type="radio" name="P3Q5R3" value="1" id="P3Q5R3A" /><label for="P3Q5R3A"></label></td><td class="zkeyradio" title="比较小"><input type="radio" name="P3Q5R3" value="2" id="P3Q5R3B" /><label for="P3Q5R3B"></label></td><td class="zkeyradio" title="一般"><input type="radio" name="P3Q5R3" value="3" id="P3Q5R3C" /><label for="P3Q5R3C"></label></td><td class="zkeyradio" title="比较大"><input type="radio" name="P3Q5R3" value="4" id="P3Q5R3D" /><label for="P3Q5R3D"></label></td><td class="zkeyradio" title="非常大"><input type="radio" name="P3Q5R3" value="5" id="P3Q5R3E" /><label for="P3Q5R3E"></label></td></tr>
+                        <tr><td class="tdTitle">创新技术发展理念</td><td class="tdErrMsg"><label for="P3Q5R4" class="error">X→</label></td><td class="zkeyradio" title="非常小"><input type="radio" name="P3Q5R4" value="1" id="P3Q5R4A" /><label for="P3Q5R4A"></label></td><td class="zkeyradio" title="比较小"><input type="radio" name="P3Q5R4" value="2" id="P3Q5R4B" /><label for="P3Q5R4B"></label></td><td class="zkeyradio" title="一般"><input type="radio" name="P3Q5R4" value="3" id="P3Q5R4C" /><label for="P3Q5R4C"></label></td><td class="zkeyradio" title="比较大"><input type="radio" name="P3Q5R4" value="4" id="P3Q5R4D" /><label for="P3Q5R4D"></label></td><td class="zkeyradio" title="非常大"><input type="radio" name="P3Q5R4" value="5" id="P3Q5R4E" /><label for="P3Q5R4E"></label></td></tr>
+                        <tr><td class="tdTitle">促进成果转化</td><td class="tdErrMsg"><label for="P3Q5R5" class="error">X→</label></td><td class="zkeyradio" title="非常小"><input type="radio" name="P3Q5R5" value="1" id="P3Q5R5A" /><label for="P3Q5R5A"></label></td><td class="zkeyradio" title="比较小"><input type="radio" name="P3Q5R5" value="2" id="P3Q5R5B" /><label for="P3Q5R5B"></label></td><td class="zkeyradio" title="一般"><input type="radio" name="P3Q5R5" value="3" id="P3Q5R5C" /><label for="P3Q5R5C"></label></td><td class="zkeyradio" title="比较大"><input type="radio" name="P3Q5R5" value="4" id="P3Q5R5D" /><label for="P3Q5R5D"></label></td><td class="zkeyradio" title="非常大"><input type="radio" name="P3Q5R5" value="5" id="P3Q5R5E" /><label for="P3Q5R5E"></label></td></tr>
+						</tbody>
+                    </table>
+                </div>
+            </div>
+			<div class="subject P2Q8CShow">
+                <h4 class="QuestionTitle">6.请对学校培养出来的<span class="text-danger">专业技术类人才</span>，在<span class="text-danger">取得创新成果</span>方面的贡献程度进行评价。</h4>
+                <div class="Answer table">
+                    <table class="responsiveTable">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th class="tdErrMsg"></th>
+                            <th>非常小</th>
+                            <th>比较小</th>
+                            <th>一般</th>
+                            <th>比较大</th>
+                            <th>非常大</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr><td class="tdTitle">创造高水平论文著作</td><td class="tdErrMsg"><label for="P3Q6R1" class="error">X→</label></td><td class="zkeyradio" title="非常小"><input type="radio" name="P3Q6R1" value="1" id="P3Q6R1A" /><label for="P3Q6R1A"></label></td><td class="zkeyradio" title="比较小"><input type="radio" name="P3Q6R1" value="2" id="P3Q6R1B" /><label for="P3Q6R1B"></label></td><td class="zkeyradio" title="一般"><input type="radio" name="P3Q6R1" value="3" id="P3Q6R1C" /><label for="P3Q6R1C"></label></td><td class="zkeyradio" title="比较大"><input type="radio" name="P3Q6R1" value="4" id="P3Q6R1D" /><label for="P3Q6R1D"></label></td><td class="zkeyradio" title="非常大"><input type="radio" name="P3Q6R1" value="5" id="P3Q6R1E" /><label for="P3Q6R1E"></label></td></tr>
+                        <tr><td class="tdTitle">发明技术或产品专利</td><td class="tdErrMsg"><label for="P3Q6R2" class="error">X→</label></td><td class="zkeyradio" title="非常小"><input type="radio" name="P3Q6R2" value="1" id="P3Q6R2A" /><label for="P3Q6R2A"></label></td><td class="zkeyradio" title="比较小"><input type="radio" name="P3Q6R2" value="2" id="P3Q6R2B" /><label for="P3Q6R2B"></label></td><td class="zkeyradio" title="一般"><input type="radio" name="P3Q6R2" value="3" id="P3Q6R2C" /><label for="P3Q6R2C"></label></td><td class="zkeyradio" title="比较大"><input type="radio" name="P3Q6R2" value="4" id="P3Q6R2D" /><label for="P3Q6R2D"></label></td><td class="zkeyradio" title="非常大"><input type="radio" name="P3Q6R2" value="5" id="P3Q6R2E" /><label for="P3Q6R2E"></label></td></tr>
+                        <tr><td class="tdTitle">获得国际重大奖项的荣誉</td><td class="tdErrMsg"><label for="P3Q6R3" class="error">X→</label></td><td class="zkeyradio" title="非常小"><input type="radio" name="P3Q6R3" value="1" id="P3Q6R3A" /><label for="P3Q6R3A"></label></td><td class="zkeyradio" title="比较小"><input type="radio" name="P3Q6R3" value="2" id="P3Q6R3B" /><label for="P3Q6R3B"></label></td><td class="zkeyradio" title="一般"><input type="radio" name="P3Q6R3" value="3" id="P3Q6R3C" /><label for="P3Q6R3C"></label></td><td class="zkeyradio" title="比较大"><input type="radio" name="P3Q6R3" value="4" id="P3Q6R3D" /><label for="P3Q6R3D"></label></td><td class="zkeyradio" title="非常大"><input type="radio" name="P3Q6R3" value="5" id="P3Q6R3E" /><label for="P3Q6R3E"></label></td></tr>
+                        <tr><td class="tdTitle">荣获国内各级别奖项的荣誉</td><td class="tdErrMsg"><label for="P3Q6R4" class="error">X→</label></td><td class="zkeyradio" title="非常小"><input type="radio" name="P3Q6R4" value="1" id="P3Q6R4A" /><label for="P3Q6R4A"></label></td><td class="zkeyradio" title="比较小"><input type="radio" name="P3Q6R4" value="2" id="P3Q6R4B" /><label for="P3Q6R4B"></label></td><td class="zkeyradio" title="一般"><input type="radio" name="P3Q6R4" value="3" id="P3Q6R4C" /><label for="P3Q6R4C"></label></td><td class="zkeyradio" title="比较大"><input type="radio" name="P3Q6R4" value="4" id="P3Q6R4D" /><label for="P3Q6R4D"></label></td><td class="zkeyradio" title="非常大"><input type="radio" name="P3Q6R4" value="5" id="P3Q6R4E" /><label for="P3Q6R4E"></label></td></tr>
+						</tbody>
+                    </table>
+                </div>
+            </div>	
+			<div class="subject">
+                <h4 class="QuestionTitle">7.请对您自己及周围校友在<span class="text-danger">回馈学校方面</span>的贡献程度进行评价。</h4>
+                <div class="Answer table">
+                    <table class="responsiveTable">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th class="tdErrMsg"></th>
+                            <th>非常<br class="visible-xs">小</th>
+                            <th>比较<br class="visible-xs">小</th>
+                            <th>一般</th>
+                            <th>比较<br class="visible-xs">大</th>
+                            <th>非常<br class="visible-xs">大</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr><td class="tdTitle">通过个人或利用社会地位及影响力为学校捐助各类资源</td><td class="tdErrMsg"><label for="P3Q7R1" class="error">X→</label></td><td class="zkeyradio" title="非常小"><input type="radio" name="P3Q7R1" value="1" id="P3Q7R1A" /><label for="P3Q7R1A"></label></td><td class="zkeyradio" title="比较小"><input type="radio" name="P3Q7R1" value="2" id="P3Q7R1B" /><label for="P3Q7R1B"></label></td><td class="zkeyradio" title="一般"><input type="radio" name="P3Q7R1" value="3" id="P3Q7R1C" /><label for="P3Q7R1C"></label></td><td class="zkeyradio" title="比较大"><input type="radio" name="P3Q7R1" value="4" id="P3Q7R1D" /><label for="P3Q7R1D"></label></td><td class="zkeyradio" title="非常大"><input type="radio" name="P3Q7R1" value="5" id="P3Q7R1E" /><label for="P3Q7R1E"></label></td></tr>
+                        <tr><td class="tdTitle">参加学生入学、毕业典礼，分享自身的职业发展经历，激励在校学生的成长</td><td class="tdErrMsg"><label for="P3Q7R2" class="error">X→</label></td><td class="zkeyradio" title="非常小"><input type="radio" name="P3Q7R2" value="1" id="P3Q7R2A" /><label for="P3Q7R2A"></label></td><td class="zkeyradio" title="比较小"><input type="radio" name="P3Q7R2" value="2" id="P3Q7R2B" /><label for="P3Q7R2B"></label></td><td class="zkeyradio" title="一般"><input type="radio" name="P3Q7R2" value="3" id="P3Q7R2C" /><label for="P3Q7R2C"></label></td><td class="zkeyradio" title="比较大"><input type="radio" name="P3Q7R2" value="4" id="P3Q7R2D" /><label for="P3Q7R2D"></label></td><td class="zkeyradio" title="非常大"><input type="radio" name="P3Q7R2" value="5" id="P3Q7R2E" /><label for="P3Q7R2E"></label></td></tr>
+                        <tr><td class="tdTitle">组织学校学生参观自己所在企业，为学生提供更多就业机会</td><td class="tdErrMsg"><label for="P3Q7R3" class="error">X→</label></td><td class="zkeyradio" title="非常小"><input type="radio" name="P3Q7R3" value="1" id="P3Q7R3A" /><label for="P3Q7R3A"></label></td><td class="zkeyradio" title="比较小"><input type="radio" name="P3Q7R3" value="2" id="P3Q7R3B" /><label for="P3Q7R3B"></label></td><td class="zkeyradio" title="一般"><input type="radio" name="P3Q7R3" value="3" id="P3Q7R3C" /><label for="P3Q7R3C"></label></td><td class="zkeyradio" title="比较大"><input type="radio" name="P3Q7R3" value="4" id="P3Q7R3D" /><label for="P3Q7R3D"></label></td><td class="zkeyradio" title="非常大"><input type="radio" name="P3Q7R3" value="5" id="P3Q7R3E" /><label for="P3Q7R3E"></label></td></tr>
+                        <tr><td class="tdTitle">主动参与学校的项目，加强校企合作</td><td class="tdErrMsg"><label for="P3Q7R4" class="error">X→</label></td><td class="zkeyradio" title="非常小"><input type="radio" name="P3Q7R4" value="1" id="P3Q7R4A" /><label for="P3Q7R4A"></label></td><td class="zkeyradio" title="比较小"><input type="radio" name="P3Q7R4" value="2" id="P3Q7R4B" /><label for="P3Q7R4B"></label></td><td class="zkeyradio" title="一般"><input type="radio" name="P3Q7R4" value="3" id="P3Q7R4C" /><label for="P3Q7R4C"></label></td><td class="zkeyradio" title="比较大"><input type="radio" name="P3Q7R4" value="4" id="P3Q7R4D" /><label for="P3Q7R4D"></label></td><td class="zkeyradio" title="非常大"><input type="radio" name="P3Q7R4" value="5" id="P3Q7R4E" /><label for="P3Q7R4E"></label></td></tr>
+						</tbody>
+                    </table>
+                </div>
+            </div>	
+			<div class="subject">
+                <h4 class="QuestionTitle">8.请对您自己及周围校友在<span class="text-danger">人才培育方面</span>的贡献程度进行评价。</h4>
+                <div class="Answer table">
+                    <table class="responsiveTable">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th class="tdErrMsg"></th>
+                            <th>非常<br class="visible-xs">小</th>
+                            <th>比较<br class="visible-xs">小</th>
+                            <th>一般</th>
+                            <th>比较<br class="visible-xs">大</th>
+                            <th>非常<br class="visible-xs">大</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr><td class="tdTitle">体现更多传、帮、带的人才理念</td><td class="tdErrMsg"><label for="P3Q8R1" class="error">X→</label></td><td class="zkeyradio" title="非常小"><input type="radio" name="P3Q8R1" value="1" id="P3Q8R1A" /><label for="P3Q8R1A"></label></td><td class="zkeyradio" title="比较小"><input type="radio" name="P3Q8R1" value="2" id="P3Q8R1B" /><label for="P3Q8R1B"></label></td><td class="zkeyradio" title="一般"><input type="radio" name="P3Q8R1" value="3" id="P3Q8R1C" /><label for="P3Q8R1C"></label></td><td class="zkeyradio" title="比较大"><input type="radio" name="P3Q8R1" value="4" id="P3Q8R1D" /><label for="P3Q8R1D"></label></td><td class="zkeyradio" title="非常大"><input type="radio" name="P3Q8R1" value="5" id="P3Q8R1E" /><label for="P3Q8R1E"></label></td></tr>
+                        <tr><td class="tdTitle">传授先进人才管理经验</td><td class="tdErrMsg"><label for="P3Q8R2" class="error">X→</label></td><td class="zkeyradio" title="非常小"><input type="radio" name="P3Q8R2" value="1" id="P3Q8R2A" /><label for="P3Q8R2A"></label></td><td class="zkeyradio" title="比较小"><input type="radio" name="P3Q8R2" value="2" id="P3Q8R2B" /><label for="P3Q8R2B"></label></td><td class="zkeyradio" title="一般"><input type="radio" name="P3Q8R2" value="3" id="P3Q8R2C" /><label for="P3Q8R2C"></label></td><td class="zkeyradio" title="比较大"><input type="radio" name="P3Q8R2" value="4" id="P3Q8R2D" /><label for="P3Q8R2D"></label></td><td class="zkeyradio" title="非常大"><input type="radio" name="P3Q8R2" value="5" id="P3Q8R2E" /><label for="P3Q8R2E"></label></td></tr>
+                        <tr><td class="tdTitle">培养更多优秀团队</td><td class="tdErrMsg"><label for="P3Q8R3" class="error">X→</label></td><td class="zkeyradio" title="非常小"><input type="radio" name="P3Q8R3" value="1" id="P3Q8R3A" /><label for="P3Q8R3A"></label></td><td class="zkeyradio" title="比较小"><input type="radio" name="P3Q8R3" value="2" id="P3Q8R3B" /><label for="P3Q8R3B"></label></td><td class="zkeyradio" title="一般"><input type="radio" name="P3Q8R3" value="3" id="P3Q8R3C" /><label for="P3Q8R3C"></label></td><td class="zkeyradio" title="比较大"><input type="radio" name="P3Q8R3" value="4" id="P3Q8R3D" /><label for="P3Q8R3D"></label></td><td class="zkeyradio" title="非常大"><input type="radio" name="P3Q8R3" value="5" id="P3Q8R3E" /><label for="P3Q8R3E"></label></td></tr>
+                        <tr><td class="tdTitle">培养更多行业精英</td><td class="tdErrMsg"><label for="P3Q8R4" class="error">X→</label></td><td class="zkeyradio" title="非常小"><input type="radio" name="P3Q8R4" value="1" id="P3Q8R4A" /><label for="P3Q8R4A"></label></td><td class="zkeyradio" title="比较小"><input type="radio" name="P3Q8R4" value="2" id="P3Q8R4B" /><label for="P3Q8R4B"></label></td><td class="zkeyradio" title="一般"><input type="radio" name="P3Q8R4" value="3" id="P3Q8R4C" /><label for="P3Q8R4C"></label></td><td class="zkeyradio" title="比较大"><input type="radio" name="P3Q8R4" value="4" id="P3Q8R4D" /><label for="P3Q8R4D"></label></td><td class="zkeyradio" title="非常大"><input type="radio" name="P3Q8R4" value="5" id="P3Q8R4E" /><label for="P3Q8R4E"></label></td></tr>
+					   </tbody>
+                    </table>
+                </div>
+            </div>	
+			<hr>
+            <div class="divButton">
+                <input class="go-page" type="button" value="<< 返 回 前 页" onclick="GoPreviewOnly('#DivPart2','#DivPart3','#divTop')"  style="margin-right: 80px;"/>
+
+                <input class="go-page" type="button" value="继 续 填 答 >>" onclick="btnPart3_Click()"/>
+            </div>
+        </div>
+        <div id="DivPart4" class="col-lg-12" >
+            <h1 class="part-title">第四部分：对母校人才培养及校友发展状况的评价</h1>
+			<div class="subject">
+                <h4 class="QuestionTitle">1.请您对母校人才培养各个方面进行综合评价。</h4>
+                <div class="Answer table">
+                    <table class="responsiveTable">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th class="tdErrMsg"></th>
+                            <th>完全<br class="visible-xs"/>不<br class="visible-xs"/>同意</th>
+                            <th>基本<br class="visible-xs"/>不<br class="visible-xs"/>同意</th>
+                            <th>一<br class="visible-xs"/>般</th>
+                            <th>基本<br class="visible-xs"/>同意</th>
+                            <th>完全<br class="visible-xs"/>同意</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr><td class="tdTitle">非常重视对学生理论知识的传授</td><td class="tdErrMsg"><label for="P4Q1R1" class="error">X→</label></td><td class="zkeyradio" title="完全不同意"><input type="radio" name="P4Q1R1" value="1" id="P4Q1R1A" /><label for="P4Q1R1A"></label></td><td class="zkeyradio" title="基本不同意"><input type="radio" name="P4Q1R1" value="2" id="P4Q1R1B" /><label for="P4Q1R1B"></label></td><td class="zkeyradio" title="一般　　　　"><input type="radio" name="P4Q1R1" value="3" id="P4Q1R1C" /><label for="P4Q1R1C"></label></td><td class="zkeyradio" title="基本同意"><input type="radio" name="P4Q1R1" value="4" id="P4Q1R1D" /><label for="P4Q1R1D"></label></td><td class="zkeyradio" title="完全同意"><input type="radio" name="P4Q1R1" value="5" id="P4Q1R1E" /><label for="P4Q1R1E"></label></td></tr>
+                        <tr><td class="tdTitle">非常重视对学生创新能力的培养</td><td class="tdErrMsg"><label for="P4Q1R2" class="error">X→</label></td><td title="完全不同意" class="zkeyradio"><input type="radio" name="P4Q1R2" value="1" id="P4Q1R2A" /><label for="P4Q1R2A"></label></td><td title="基本不同意" class="zkeyradio"><input type="radio" name="P4Q1R2" value="2" id="P4Q1R2B" /><label for="P4Q1R2B"></label></td><td title="一般　　　　" class="zkeyradio"><input type="radio" name="P4Q1R2" value="3" id="P4Q1R2C" /><label for="P4Q1R2C"></label></td><td title="基本同意" class="zkeyradio"><input type="radio" name="P4Q1R2" value="4" id="P4Q1R2D" /><label for="P4Q1R2D"></label></td><td title="完全同意" class="zkeyradio"><input type="radio" name="P4Q1R2" value="5" id="P4Q1R2E" /><label for="P4Q1R2E"></label></td></tr>
+                        <tr><td class="tdTitle">非常重视对学生实践能力的锻炼</td><td class="tdErrMsg"><label for="P4Q1R3" class="error">X→</label></td><td class="zkeyradio" title="完全不同意"><input type="radio" name="P4Q1R3" value="1" id="P4Q1R3A" /><label for="P4Q1R3A"></label></td><td class="zkeyradio" title="基本不同意"><input type="radio" name="P4Q1R3" value="2" id="P4Q1R3B" /><label for="P4Q1R3B"></label></td><td class="zkeyradio" title="一般　　　　"><input type="radio" name="P4Q1R3" value="3" id="P4Q1R3C" /><label for="P4Q1R3C"></label></td><td class="zkeyradio" title="基本同意"><input type="radio" name="P4Q1R3" value="4" id="P4Q1R3D" /><label for="P4Q1R3D"></label></td><td class="zkeyradio" title="完全同意"><input type="radio" name="P4Q1R3" value="5" id="P4Q1R3E" /><label for="P4Q1R3E"></label></td></tr>
+                        <tr><td class="tdTitle">提供很多机会到政府、企业、社会组织等进行学习实践</td><td class="tdErrMsg"><label for="P4Q1R4" class="error">X→</label></td><td class="zkeyradio" title="完全不同意"><input type="radio" name="P4Q1R4" value="1" id="P4Q1R4A" /><label for="P4Q1R4A"></label></td><td class="zkeyradio" title="基本不同意"><input type="radio" name="P4Q1R4" value="2" id="P4Q1R4B" /><label for="P4Q1R4B"></label></td><td class="zkeyradio" title="一般　　　　"><input type="radio" name="P4Q1R4" value="3" id="P4Q1R4C" /><label for="P4Q1R4C"></label></td><td class="zkeyradio" title="基本同意"><input type="radio" name="P4Q1R4" value="4" id="P4Q1R4D" /><label for="P4Q1R4D"></label></td><td class="zkeyradio" title="完全同意"><input type="radio" name="P4Q1R4" value="5" id="P4Q1R4E" /><label for="P4Q1R4E"></label></td></tr>
+                        <tr><td class="tdTitle">能够提供很多机会到其他高校或研究所进行交流访学</td><td class="tdErrMsg"><label for="P4Q1R5" class="error">X→</label></td><td class="zkeyradio" title="完全不同意"><input type="radio" name="P4Q1R5" value="1" id="P4Q1R5A" /><label for="P4Q1R5A"></label></td><td class="zkeyradio" title="基本不同意"><input type="radio" name="P4Q1R5" value="2" id="P4Q1R5B" /><label for="P4Q1R5B"></label></td><td class="zkeyradio" title="一般　　　　"><input type="radio" name="P4Q1R5" value="3" id="P4Q1R5C" /><label for="P4Q1R5C"></label></td><td class="zkeyradio" title="基本同意"><input type="radio" name="P4Q1R5" value="4" id="P4Q1R5D" /><label for="P4Q1R5D"></label></td><td class="zkeyradio" title="完全同意"><input type="radio" name="P4Q1R5" value="5" id="P4Q1R5E" /><label for="P4Q1R5E"></label></td></tr>
+                        <tr><td class="tdTitle">提供机会到国外进行交流学习</td><td class="tdErrMsg"><label for="P4Q1R6" class="error">X→</label></td><td class="zkeyradio" title="完全不同意"><input type="radio" name="P4Q1R6" value="1" id="P4Q1R6A" /><label for="P4Q1R6A"></label></td><td class="zkeyradio" title="基本不同意"><input type="radio" name="P4Q1R6" value="2" id="P4Q1R6B" /><label for="P4Q1R6B"></label></td><td class="zkeyradio" title="一般　　　　"><input type="radio" name="P4Q1R6" value="3" id="P4Q1R6C" /><label for="P4Q1R6C"></label></td><td class="zkeyradio" title="基本同意"><input type="radio" name="P4Q1R6" value="4" id="P4Q1R6D" /><label for="P4Q1R6D"></label></td><td class="zkeyradio" title="完全同意"><input type="radio" name="P4Q1R6" value="5" id="P4Q1R6E" /><label for="P4Q1R6E"></label></td></tr>
+                        <tr><td class="tdTitle">可以经常听到校外人士高水平讲学、讲座、授课</td><td class="tdErrMsg"><label for="P4Q1R7" class="error">X→</label></td><td class="zkeyradio" title="完全不同意"><input type="radio" name="P4Q1R7" value="1" id="P4Q1R7A" /><label for="P4Q1R7A"></label></td><td class="zkeyradio" title="基本不同意"><input type="radio" name="P4Q1R7" value="2" id="P4Q1R7B" /><label for="P4Q1R7B"></label></td><td class="zkeyradio" title="一般　　　　"><input type="radio" name="P4Q1R7" value="3" id="P4Q1R7C" /><label for="P4Q1R7C"></label></td><td class="zkeyradio" title="基本同意"><input type="radio" name="P4Q1R7" value="4" id="P4Q1R7D" /><label for="P4Q1R7D"></label></td><td class="zkeyradio" title="完全同意"><input type="radio" name="P4Q1R7" value="5" id="P4Q1R7E" /><label for="P4Q1R7E"></label></td></tr>
+                        <tr><td class="tdTitle">可以深度参与到老师科研项目</td><td class="tdErrMsg"><label for="P4Q1R8" class="error">X→</label></td><td class="zkeyradio" title="完全不同意"><input type="radio" name="P4Q1R8" value="1" id="P4Q1R8A" /><label for="P4Q1R8A"></label></td><td class="zkeyradio" title="基本不同意"><input type="radio" name="P4Q1R8" value="2" id="P4Q1R8B" /><label for="P4Q1R8B"></label></td><td class="zkeyradio" title="一般　　　　"><input type="radio" name="P4Q1R8" value="3" id="P4Q1R8C" /><label for="P4Q1R8C"></label></td><td class="zkeyradio" title="基本同意"><input type="radio" name="P4Q1R8" value="4" id="P4Q1R8D" /><label for="P4Q1R8D"></label></td><td class="zkeyradio" title="完全同意"><input type="radio" name="P4Q1R8" value="5" id="P4Q1R8E" /><label for="P4Q1R8E"></label></td></tr>
+                        <tr><td class="tdTitle">可以方便使用学校的各类高水平科研平台资源</td><td class="tdErrMsg"><label for="P4Q1R9" class="error">X→</label></td><td class="zkeyradio" title="完全不同意"><input type="radio" name="P4Q1R9" value="1" id="P4Q1R9A" /><label for="P4Q1R9A"></label></td><td class="zkeyradio" title="基本不同意"><input type="radio" name="P4Q1R9" value="2" id="P4Q1R9B" /><label for="P4Q1R9B"></label></td><td class="zkeyradio" title="一般　　　　"><input type="radio" name="P4Q1R9" value="3" id="P4Q1R9C" /><label for="P4Q1R9C"></label></td><td class="zkeyradio" title="基本同意"><input type="radio" name="P4Q1R9" value="4" id="P4Q1R9D" /><label for="P4Q1R9D"></label></td><td class="zkeyradio" title="完全同意"><input type="radio" name="P4Q1R9" value="5" id="P4Q1R9E" /><label for="P4Q1R9E"></label></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+			<div class="subject">
+                <h4 class="QuestionTitle">2.请您对母校未来人才培养的发展方向进行综合评价。</h4>
+                <div class="Answer table">
+                    <table class="responsiveTable">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th class="tdErrMsg"></th>
+                            <th>完全<br class="visible-xs"/>不<br class="visible-xs"/>同意</th>
+                            <th>基本<br class="visible-xs"/>不<br class="visible-xs"/>同意</th>
+                            <th>一<br class="visible-xs"/>般</th>
+                            <th>基本<br class="visible-xs"/>同意</th>
+                            <th>完全<br class="visible-xs"/>同意</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr><td class="tdTitle">加强社会实践课程比重</td><td class="tdErrMsg"><label for="P4Q2R1" class="error">X→</label></td><td class="zkeyradio" title="完全不同意"><input type="radio" name="P4Q2R1" value="1" id="P4Q2R1A" /><label for="P4Q2R1A"></label></td><td class="zkeyradio" title="基本不同意"><input type="radio" name="P4Q2R1" value="2" id="P4Q2R1B" /><label for="P4Q2R1B"></label></td><td class="zkeyradio" title="一般　　　　"><input type="radio" name="P4Q2R1" value="3" id="P4Q2R1C" /><label for="P4Q2R1C"></label></td><td class="zkeyradio" title="基本同意"><input type="radio" name="P4Q2R1" value="4" id="P4Q2R1D" /><label for="P4Q2R1D"></label></td><td class="zkeyradio" title="完全同意"><input type="radio" name="P4Q2R1" value="5" id="P4Q2R1E" /><label for="P4Q2R1E"></label></td></tr>
+                        <tr><td class="tdTitle">增加与社会各界互动交流的机会</td><td class="tdErrMsg"><label for="P4Q2R2" class="error">X→</label></td><td title="完全不同意" class="zkeyradio"><input type="radio" name="P4Q2R2" value="1" id="P4Q2R2A" /><label for="P4Q2R2A"></label></td><td title="基本不同意" class="zkeyradio"><input type="radio" name="P4Q2R2" value="2" id="P4Q2R2B" /><label for="P4Q2R2B"></label></td><td title="一般　　　　" class="zkeyradio"><input type="radio" name="P4Q2R2" value="3" id="P4Q2R2C" /><label for="P4Q2R2C"></label></td><td title="基本同意" class="zkeyradio"><input type="radio" name="P4Q2R2" value="4" id="P4Q2R2D" /><label for="P4Q2R2D"></label></td><td title="完全同意" class="zkeyradio"><input type="radio" name="P4Q2R2" value="5" id="P4Q2R2E" /><label for="P4Q2R2E"></label></td></tr>
+                        <tr><td class="tdTitle">吸引更多具有社会工作经历背景的人到校授课</td><td class="tdErrMsg"><label for="P4Q2R3" class="error">X→</label></td><td class="zkeyradio" title="完全不同意"><input type="radio" name="P4Q2R3" value="1" id="P4Q2R3A" /><label for="P4Q2R3A"></label></td><td class="zkeyradio" title="基本不同意"><input type="radio" name="P4Q2R3" value="2" id="P4Q2R3B" /><label for="P4Q2R3B"></label></td><td class="zkeyradio" title="一般　　　　"><input type="radio" name="P4Q2R3" value="3" id="P4Q2R3C" /><label for="P4Q2R3C"></label></td><td class="zkeyradio" title="基本同意"><input type="radio" name="P4Q2R3" value="4" id="P4Q2R3D" /><label for="P4Q2R3D"></label></td><td class="zkeyradio" title="完全同意"><input type="radio" name="P4Q2R3" value="5" id="P4Q2R3E" /><label for="P4Q2R3E"></label></td></tr>
+                        <tr><td class="tdTitle">加强教学方法的改革创新</td><td class="tdErrMsg"><label for="P4Q2R4" class="error">X→</label></td><td class="zkeyradio" title="完全不同意"><input type="radio" name="P4Q2R4" value="1" id="P4Q2R4A" /><label for="P4Q2R4A"></label></td><td class="zkeyradio" title="基本不同意"><input type="radio" name="P4Q2R4" value="2" id="P4Q2R4B" /><label for="P4Q2R4B"></label></td><td class="zkeyradio" title="一般　　　　"><input type="radio" name="P4Q2R4" value="3" id="P4Q2R4C" /><label for="P4Q2R4C"></label></td><td class="zkeyradio" title="基本同意"><input type="radio" name="P4Q2R4" value="4" id="P4Q2R4D" /><label for="P4Q2R4D"></label></td><td class="zkeyradio" title="完全同意"><input type="radio" name="P4Q2R4" value="5" id="P4Q2R4E" /><label for="P4Q2R4E"></label></td></tr>
+                        <tr><td class="tdTitle">加强校、企业、社会联合培育</td><td class="tdErrMsg"><label for="P4Q2R5" class="error">X→</label></td><td class="zkeyradio" title="完全不同意"><input type="radio" name="P4Q2R5" value="1" id="P4Q2R5A" /><label for="P4Q2R5A"></label></td><td class="zkeyradio" title="基本不同意"><input type="radio" name="P4Q2R5" value="2" id="P4Q2R5B" /><label for="P4Q2R5B"></label></td><td class="zkeyradio" title="一般　　　　"><input type="radio" name="P4Q2R5" value="3" id="P4Q2R5C" /><label for="P4Q2R5C"></label></td><td class="zkeyradio" title="基本同意"><input type="radio" name="P4Q2R5" value="4" id="P4Q2R5D" /><label for="P4Q2R5D"></label></td><td class="zkeyradio" title="完全同意"><input type="radio" name="P4Q2R5" value="5" id="P4Q2R5E" /><label for="P4Q2R5E"></label></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+			<div class="subject">
+                <h4 class="QuestionTitle">3.请您及周围校友的能力素质方面进行综合评价。</h4>
+                <div class="Answer table">
+                    <table class="responsiveTable">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th class="tdErrMsg"></th>
+                            <th>表现<br class="visible-xs">最差</th>
+                            <th>表现<br class="visible-xs">较差</th>
+                            <th>一般</th>
+                            <th>表现<br class="visible-xs">较好</th>
+                            <th>表现<br class="visible-xs">最好</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr><td class="tdTitle">国际化视野</td><td class="tdErrMsg"><label for="P4Q3R1" class="error">X→</label></td>
+							<td class="zkeyradio" title="表现最差"><input type="radio" name="P4Q3R1" value="1" id="P4Q3R1A" /><label for="P4Q3R1A"></label></td>
+							<td class="zkeyradio" title="表现较差"><input type="radio" name="P4Q3R1" value="2" id="P4Q3R1B" /><label for="P4Q3R1B"></label></td>
+							<td class="zkeyradio" title="一般    "><input type="radio" name="P4Q3R1" value="3" id="P4Q3R1C" /><label for="P4Q3R1C"></label></td>
+							<td class="zkeyradio" title="表现较好"><input type="radio" name="P4Q3R1" value="4" id="P4Q3R1D" /><label for="P4Q3R1D"></label></td>
+							<td class="zkeyradio" title="表现最好"><input type="radio" name="P4Q3R1" value="5" id="P4Q3R1E" /><label for="P4Q3R1E"></label></td>
+						</tr>
+                        <tr><td class="tdTitle">前瞻性思维</td><td class="tdErrMsg"><label for="P4Q3R2" class="error">X→</label></td>
+							<td title="表现最差" class="zkeyradio"><input type="radio" name="P4Q3R2" value="1" id="P4Q3R2A" /><label for="P4Q3R2A"></label></td>
+							<td title="表现较差" class="zkeyradio"><input type="radio" name="P4Q3R2" value="2" id="P4Q3R2B" /><label for="P4Q3R2B"></label></td>
+							<td title="一般    " class="zkeyradio"><input type="radio" name="P4Q3R2" value="3" id="P4Q3R2C" /><label for="P4Q3R2C"></label></td>
+							<td title="表现较好" class="zkeyradio"><input type="radio" name="P4Q3R2" value="4" id="P4Q3R2D" /><label for="P4Q3R2D"></label></td>
+							<td title="表现最好" class="zkeyradio"><input type="radio" name="P4Q3R2" value="5" id="P4Q3R2E" /><label for="P4Q3R2E"></label></td>
+						</tr>
+                        <tr><td class="tdTitle">创新能力</td><td class="tdErrMsg"><label for="P4Q3R3" class="error">X→</label></td>
+							<td class="zkeyradio" title="表现最差"><input type="radio" name="P4Q3R3" value="1" id="P4Q3R3A" /><label for="P4Q3R3A"></label></td>
+							<td class="zkeyradio" title="表现较差"><input type="radio" name="P4Q3R3" value="2" id="P4Q3R3B" /><label for="P4Q3R3B"></label></td>
+							<td class="zkeyradio" title="一般    "><input type="radio" name="P4Q3R3" value="3" id="P4Q3R3C" /><label for="P4Q3R3C"></label></td>
+							<td class="zkeyradio" title="表现较好"><input type="radio" name="P4Q3R3" value="4" id="P4Q3R3D" /><label for="P4Q3R3D"></label></td>
+							<td class="zkeyradio" title="表现最好"><input type="radio" name="P4Q3R3" value="5" id="P4Q3R3E" /><label for="P4Q3R3E"></label></td>
+						</tr>
+                        <tr><td class="tdTitle">终身学习能力</td><td class="tdErrMsg"><label for="P4Q3R4" class="error">X→</label></td>
+							<td class="zkeyradio" title="表现最差"><input type="radio" name="P4Q3R4" value="1" id="P4Q3R4A" /><label for="P4Q3R4A"></label></td>
+							<td class="zkeyradio" title="表现较差"><input type="radio" name="P4Q3R4" value="2" id="P4Q3R4B" /><label for="P4Q3R4B"></label></td>
+							<td class="zkeyradio" title="一般    "><input type="radio" name="P4Q3R4" value="3" id="P4Q3R4C" /><label for="P4Q3R4C"></label></td>
+							<td class="zkeyradio" title="表现较好"><input type="radio" name="P4Q3R4" value="4" id="P4Q3R4D" /><label for="P4Q3R4D"></label></td>
+							<td class="zkeyradio" title="表现最好"><input type="radio" name="P4Q3R4" value="5" id="P4Q3R4E" /><label for="P4Q3R4E"></label></td>
+						</tr>
+                        <tr><td class="tdTitle">家国情怀</td><td class="tdErrMsg"><label for="P4Q3R5" class="error">X→</label></td>
+							<td class="zkeyradio" title="表现最差"><input type="radio" name="P4Q3R5" value="1" id="P4Q3R5A" /><label for="P4Q3R5A"></label></td>
+							<td class="zkeyradio" title="表现较差"><input type="radio" name="P4Q3R5" value="2" id="P4Q3R5B" /><label for="P4Q3R5B"></label></td>
+							<td class="zkeyradio" title="一般    "><input type="radio" name="P4Q3R5" value="3" id="P4Q3R5C" /><label for="P4Q3R5C"></label></td>
+							<td class="zkeyradio" title="表现较好"><input type="radio" name="P4Q3R5" value="4" id="P4Q3R5D" /><label for="P4Q3R5D"></label></td>
+							<td class="zkeyradio" title="表现最好"><input type="radio" name="P4Q3R5" value="5" id="P4Q3R5E" /><label for="P4Q3R5E"></label></td>
+						</tr>
+                        <tr><td class="tdTitle">吃苦耐劳品质</td><td class="tdErrMsg"><label for="P4Q3R6" class="error">X→</label></td>
+							<td class="zkeyradio" title="表现最差"><input type="radio" name="P4Q3R6" value="1" id="P4Q3R6A" /><label for="P4Q3R6A"></label></td>
+							<td class="zkeyradio" title="表现较差"><input type="radio" name="P4Q3R6" value="2" id="P4Q3R6B" /><label for="P4Q3R6B"></label></td>
+							<td class="zkeyradio" title="一般    "><input type="radio" name="P4Q3R6" value="3" id="P4Q3R6C" /><label for="P4Q3R6C"></label></td>
+							<td class="zkeyradio" title="表现较好"><input type="radio" name="P4Q3R6" value="4" id="P4Q3R6D" /><label for="P4Q3R6D"></label></td>
+							<td class="zkeyradio" title="表现最好"><input type="radio" name="P4Q3R6" value="5" id="P4Q3R6E" /><label for="P4Q3R6E"></label></td>
+						</tr>
+                        <tr><td class="tdTitle">勇于担当精神</td><td class="tdErrMsg"><label for="P4Q3R7" class="error">X→</label></td>
+							<td class="zkeyradio" title="表现最差"><input type="radio" name="P4Q3R7" value="1" id="P4Q3R7A" /><label for="P4Q3R7A"></label></td>
+							<td class="zkeyradio" title="表现较差"><input type="radio" name="P4Q3R7" value="2" id="P4Q3R7B" /><label for="P4Q3R7B"></label></td>
+							<td class="zkeyradio" title="一般    "><input type="radio" name="P4Q3R7" value="3" id="P4Q3R7C" /><label for="P4Q3R7C"></label></td>
+							<td class="zkeyradio" title="表现较好"><input type="radio" name="P4Q3R7" value="4" id="P4Q3R7D" /><label for="P4Q3R7D"></label></td>
+							<td class="zkeyradio" title="表现最好"><input type="radio" name="P4Q3R7" value="5" id="P4Q3R7E" /><label for="P4Q3R7E"></label></td>
+						</tr>
+                        <tr><td class="tdTitle">努力拼搏精神</td><td class="tdErrMsg"><label for="P4Q3R8" class="error">X→</label></td>
+							<td class="zkeyradio" title="表现最差"><input type="radio" name="P4Q3R8" value="1" id="P4Q3R8A" /><label for="P4Q3R8A"></label></td>
+							<td class="zkeyradio" title="表现较差"><input type="radio" name="P4Q3R8" value="2" id="P4Q3R8B" /><label for="P4Q3R8B"></label></td>
+							<td class="zkeyradio" title="一般    "><input type="radio" name="P4Q3R8" value="3" id="P4Q3R8C" /><label for="P4Q3R8C"></label></td>
+							<td class="zkeyradio" title="表现较好"><input type="radio" name="P4Q3R8" value="4" id="P4Q3R8D" /><label for="P4Q3R8D"></label></td>
+							<td class="zkeyradio" title="表现最好"><input type="radio" name="P4Q3R8" value="5" id="P4Q3R8E" /><label for="P4Q3R8E"></label></td>
+						</tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+			<div class="subject">
+                <h4 class="QuestionTitle">4.您对学校人才培养方面的整体评价：<label for="P4Q4" class="error" generated="true"></label></h4>
+                <div class="Answer clearfix">
+                    <textarea name="P4Q4" id="P4Q4" cols="30" rows="10"></textarea>
+                </div>
+            </div>
+			
+			
+			
+            
+            <hr>
+            <div class="divButton">
+                <input class="go-page" type="button" value="<< 返 回 前 页" onclick="GoPreviewOnly('#DivPart3','#DivPart4','#divTop')"  style="margin-right: 80px;"/>
+                <input class="go-page" type="button" value="提 交 问 卷 >>" onclick="btnPart4_Click()"/>
+            </div>
+            <hr>
+            <p class="text-center">感谢您参与本次问卷调查！祝您事业成功，生活幸福！</p>
+        </div>
+    </div>
+    <!--<input type="reset" name="reset" id="reset" />-->
+    <input type="hidden" id="userID" name="userID" value=""/>
+    <input type="hidden" id="PID2" name="PID2" value=""/>
+    <input type="hidden" id="WJ_YXDM" name="WJ_YXDM" value=""/>
+    <input type="hidden" id="WJ_YXMC" name="WJ_YXMC" value=""/>
+    <input type="hidden" id="WJ_SZYX" name="WJ_SZYX" value=""/>
+    <input type="hidden" id="WJ_ZYMC" name="WJ_ZYMC" value=""/>
+    <input type="hidden" id="WJ_XLCC" name="WJ_XLCC" value=""/>
+	
+    <input type="hidden" id="DeviceUserAgent" name="DeviceUserAgent" value=""/>
+    <input type="hidden" id="FLSurveyGUID" name="FLSurveyGUID" value=""/>
+    <input type="hidden" id="FLSurveyStartTime" name="FLSurveyStartTime" value=""/>
+    <input type="hidden" id="ShortTimeClickCount" name="ShortTimeClickCount" value=""/>
+    <input type="hidden" id="QuestionAndAnswerTime" name="QuestionAndAnswerTime" value=""/>
+    <input type="hidden" id="FLSurveyDataTableName" name="FLSurveyDataTableName" value="njtu_bys2018"/>
+</form>
+<div class="footer">
+    <div>
+        <h5>中科易研(北京)科技有限公司提供支持</h5>
+        <br>
+        <!--<h5>技术支持电话：18610216873</h5>-->
+    </div>
+</div>
+</body>
+<script src="../../JsCommon/jqmigrate/jquery-migrate-1.2.1.js"></script>
+<script src="../../JsCommon/BootStrap/bootstrap.min.js"></script>
+<script src="../../JsCommon/jq_validate/jquery.validate-1.5.2.js" type="text/javascript"></script>
+<script src="../../JsCommon/jq_validate/jQuery.validate.message_cn.js" type="text/javascript"></script>
+<script src="../../JsCommon/artDialog/artDialog.min.js"></script>
+<script src="../JS/FLValidateMethor.js" type="text/javascript"></script>
+<script src="../../JsFLdata/GlobalVariables.js" type="text/javascript"></script>
+<script src="../../JsFLdata/CommonFunction.js" type="text/javascript"></script>
+<script src="../../JsFLdata/SetInputControlNew.js" type="text/javascript"></script>
+<script src="../../JsFLdata/CountryAndCity.js" type="text/javascript"></script>
+
+<script src="../JS/Handler.js" type="text/javascript"></script>
+<script src="../../JsFLdata/QuestionAnswerTime.js" type="text/javascript"></script>
+<script src="suvery.js" type="text/javascript"></script>
+</html>
